@@ -40,37 +40,34 @@
         <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
         <thead>
         <tr role="row">
-          <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100.467px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
-          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 229.733px;" aria-label="Browser: activate to sort column ascending">Nomor_Transaksi
-          </th>
-          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="Platform(s): activate to sort column ascending">ID Barang
+          <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 50px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
+          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 150.733px;" aria-label="Browser: activate to sort column ascending">Nomor Transaksi
+          </th> 
+          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 150.733px;" aria-label="Browser: activate to sort column ascending">ID Barang
+          </th> 
+          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 195.4px;" aria-label="Platform(s): activate to sort column ascending">Nama Barang
             </th>
-            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="Engine version: activate to sort column ascending">Nama Barang
+            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 155.1px;" aria-label="Engine version: activate to sort column ascending">Jumlah Barang
               </th>
-              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="CSS grade: activate to sort column ascending">Jumlah Barang
+               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="CSS grade: activate to sort column ascending">Deskripsi Barang
                 </th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="CSS grade: activate to sort column ascending">Deskrisi Barang
-                  </th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="CSS grade: activate to sort column ascending">Harga Barang
-                    </th> 
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="CSS grade: activate to sort column ascending">Harga
+                  </th> 
               </tr>
          
       </thead>
         <tbody>
           
-          @foreach ($cc as $c)
+          @foreach ($users as $user)
             {{-- @if (true) --}}
                  <tr role="row" class="odd">
           <td class="sorting_1">{{$user->id}}</td>
-          {{-- <td><img src="../themes/images/products/{{$user->gambar}}" alt="" style="width:50px; height:50px"/></td> --}}
-          <td>{{$c->id_transaksi}}</td>
-          <td>{{$c->nama_barang}}</td>
-          <td>{{$c->jumlah_barang}}</td>
-          <td>{{$c->deskripsi_barang}}</td>
-          <td>{{$c->harga_barang}}</td>
-          {{-- <td> <a href="{{url('/admin/edit_barang',$user->id)}}"><button type="button" class="btn btn-primary">
-             <span class="glyphicon glyphicon-cog" style="text-decoration-style: none" aria-hidden="true"></span></button> </a>
-             <a href="{{url('/admin/delete_barang',$user->id)}}"> <button type="button" onclick="return confirm('Yakin ingin delete data?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a></td> --}}
+         <td>{{$user->id_transaksi}}</td> 
+         <td>{{$user->id_barang}}</td>
+          <td><a href="{{url('/admin/detailtransaksi',$user->id_transaksi)}}">{{$user->nama_barang}}</td>
+          <td>{{$user->jumlah_barang}}</td>
+          <td>{{$user->deskripsi_barang}}</td> 
+           <td>{{$user->harga_barang}}</td> 
                  </tr>
            
             
@@ -85,11 +82,11 @@
       </table>
       
     
-    </div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing {{$users->currentPage()}} to {{$users->count()}} of {{$users->total()}} entries</div></div>
+    </div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="example1_info" role="status" aria-live="polite"></div></div>
       <div class="col-sm-7">
         
           {{--  <li class="paginate_button active">  --}}
-            {{$users->links()}}
+           
           {{--  </li>  --}}
         </div></div></div></div>
     </div>

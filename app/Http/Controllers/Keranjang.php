@@ -17,7 +17,7 @@ class Keranjang extends Controller
         // $st = $users->stok - 1;
         // $users->stok = $st;
         // $users->save();
-        Cart::add(md5(time() . mt_rand(1,1000000)), $users->name, 1, $users->harga, ['gambar'=>$users->gambar, 'subtotal'=>$users->harga]);    
+        Cart::add($users->id, $users->name, 1, $users->harga, ['gambar'=>$users->gambar, 'subtotal'=>$users->harga]);    
         $p=Product::paginate(9);
         return Redirect::to('/');
 
@@ -28,7 +28,7 @@ class Keranjang extends Controller
         // $st = $p->stok - $request->qty;
         // $p->stok = $st;
         // $p->save();
-        Cart::add(md5(time() . mt_rand(1,1000000)), $p->name, $request->qty, $p->harga, ['gambar'=>$p->gambar, 'warna'=>$request->warna, 'subtotal'=>$request->qty * $p->harga]);
+        Cart::add($users->id, $p->name, $request->qty, $p->harga, ['gambar'=>$p->gambar, 'warna'=>$request->warna, 'subtotal'=>$request->qty * $p->harga]);
         return Redirect::to('/');
         // return Cart::content();
         
@@ -56,35 +56,40 @@ class Keranjang extends Controller
         return Redirect::to('/product_summary');
     }
     function check_out(Request $request){
-        
-    
-
         $data = new Transaktion;
-        $ddata = new DetailTrans;
         $waktu = Carbon::now();
         $nota = "".$waktu->day."".$waktu->month."".$waktu->year."".$waktu->hour."".$waktu->minute."".$waktu->second ;
         $data->id_transaksi = $nota;
       
         $data->name_pel = $request->namapelanggan;
-      
-        foreach (Cart::content() as $item) {
-            $ddata->id_transaksi = $nota;
-            $ddata->id_barang = $item->rowId;
-            $ddata->nama_pelanggan = $request->namapelanggan;
-            $ddata->harga_barang = $item->price;
-            $ddata->nama_barang = $item->name;
-            $ddata->jumlah_barang = $item->qty;
-            if(isset($item->options->warna)){
-                $ddata->deskripsi_barang = $item->options->warna;
-            }
-            else{
-                $ddata->deskripsi_barang = "tidak ada deskripsi";
-            }
+        $c = 0;
+        foreach (Cart::content() as $item):
+            $ddata[$c] = new DetailTrans;
+            $ddata[$c]->id_transaksi = $nota;
+            $ddata[$c]->id_barang = $item->rowId;
+            $ddata[$c]->nama_pelanggan = $request->namapelanggan;
+            $ddata[$c]->harga_barang = $item->price;
+            $ddata[$c]->nama_barang = $item->name;
+            $ddata[$c]->jumlah_barang = $item->qty;
+            $ddata[$c]->deskripsi_barang =$item->options->warna;
+            if(empty($ddata[$c]->deskripsi_barang )){
+                $ddata[$c]->deskripsi_barang = "tidak ada deskripsi";
+            }          
+            $ddata[$c]->save();
             
-            $ddata->save();
-        }
+            $barang = Product::find($item->row
+            ; 
+            return $barang;  
+            // $stok = $barang->stok;
+            //     $barang->stok = $barang->stok - $item->qty;
+            //     $barang->save();
+            $c++;
+            
+        endforeach;
+        
         $data->save();
-        return DetailTrans::all();
+        
+       
 
     }
 }

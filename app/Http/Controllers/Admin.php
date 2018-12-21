@@ -87,7 +87,7 @@ class Admin extends Controller
         return view('admin.list_nota', ['users'=>$users]);
     }
     function detail_transaksi($id){
-        $aa = DetailTrans::find($id);
-        return view('admin.detail_transaksi', ['cc'=>$aa]);
+        $aa = DetailTrans::where('id_transaksi', '=', $id)->get();
+        return view('admin.detail_transaksi', ['users'=>$aa]);
     }
 }
