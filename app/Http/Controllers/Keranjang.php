@@ -28,7 +28,7 @@ class Keranjang extends Controller
         // $st = $p->stok - $request->qty;
         // $p->stok = $st;
         // $p->save();
-        Cart::add($users->id, $p->name, $request->qty, $p->harga, ['gambar'=>$p->gambar, 'warna'=>$request->warna, 'subtotal'=>$request->qty * $p->harga]);
+        Cart::add($p->id, $p->name, $request->qty, $p->harga, ['gambar'=>$p->gambar, 'warna'=>$request->warna, 'subtotal'=>$request->qty * $p->harga]);
         return Redirect::to('/');
         // return Cart::content();
         
@@ -77,8 +77,7 @@ class Keranjang extends Controller
             }          
             $ddata[$c]->save();
             
-            $barang = Product::find($item->row
-            ; 
+            $barang = Product::find($item->row) ; 
             return $barang;  
             // $stok = $barang->stok;
             //     $barang->stok = $barang->stok - $item->qty;
