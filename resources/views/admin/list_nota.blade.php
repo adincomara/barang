@@ -1,4 +1,5 @@
 @extends('admin.admin_template')
+@section('title', 'List Transaksi')
 
 @section('content')
 @if (session('alertsuccess'))
@@ -13,21 +14,14 @@
 @endif
 <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Data Table With Full Features</h3>
+      <h3 class="box-title">Daftar List Transaksi</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
       <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6">
         <div class="dataTables_length" id="example1_length">
           <label>
-              {{-- <a href="/admin/input_barang"><label><button type="button" class="btn btn-primary">Input Barang</button></a></label> --}}
-            {{-- Show 
-            <select name="pagi" aria-controls="example1" class="form-control input-sm">
-              <option value="10">10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-            </select> entries --}}
+  
           </label></div></div>
           <div class="col-sm-6"><div id="example1_filter" class="dataTables_filter">
             <label>Search:<input class="form-control input-sm" placeholder="" aria-controls="example1" type="search"></label>
@@ -41,12 +35,14 @@
         <thead>
         <tr role="row">
           <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100.467px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
-          {{-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 229.733px;" aria-label="Browser: activate to sort column ascending">Gambar
-          </th> --}}
           <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 195.4px;" aria-label="Platform(s): activate to sort column ascending">Nomor Transaksi
             </th>
             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 155.1px;" aria-label="Engine version: activate to sort column ascending">Nama Pelanggan
               </th>
+              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 155.1px;" aria-label="Engine version: activate to sort column ascending">Tanggal Transaksi
+              </th>
+              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 155.1px;" aria-label="Engine version: activate to sort column ascending">Total Transaksi
+                </th>
               {{-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="CSS grade: activate to sort column ascending">Harga
                 </th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="CSS grade: activate to sort column ascending">Action
@@ -63,6 +59,8 @@
           {{-- <td><img src="../themes/images/products/{{$user->gambar}}" alt="" style="width:50px; height:50px"/></td> --}}
           <td><a href="{{url('/admin/detailtransaksi',$user->id_transaksi)}}">{{$user->id_transaksi}}</td>
           <td>{{$user->name_pel}}</td>
+          <td>{{$user->created_at->format('d - m - Y H:i')}}</td>
+          <td>{{$user->total_pembelian}}.000</td>
           {{-- <td>{{$user->harga}}</td> --}}
           {{-- <td> <a href="{{url('/admin/edit_barang',$user->id)}}"><button type="button" class="btn btn-primary">
              <span class="glyphicon glyphicon-cog" style="text-decoration-style: none" aria-hidden="true"></span></button> </a>

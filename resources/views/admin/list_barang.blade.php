@@ -1,4 +1,5 @@
 @extends('admin.admin_template')
+@section('title', 'List Barang')
 
 @section('content')
 @if (session('alertsuccess'))
@@ -13,7 +14,7 @@
 @endif
 <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Data Table With Full Features</h3>
+      <h3 class="box-title">Daftar List Barang</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -21,6 +22,7 @@
         <div class="dataTables_length" id="example1_length">
           <label>
               <a href="/admin/input_barang"><label><button type="button" class="btn btn-primary">Input Barang</button></a></label>
+              <a href="/admin/print_barang"><label><button type="button" class="btn btn-primary">Print Barang</button></a></label>
             {{-- Show 
             <select name="pagi" aria-controls="example1" class="form-control input-sm">
               <option value="10">10</option>
@@ -49,6 +51,7 @@
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="CSS grade: activate to sort column ascending">Harga
                 </th>
+                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100.467px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 111.3px;" aria-label="CSS grade: activate to sort column ascending">Action
                   </th>
               </tr>
@@ -64,7 +67,9 @@
           <td>{{$user->name}}</td>
           <td>{{$user->stok}}</td>
           <td>{{$user->harga}}</td>
+          <td>{{$user->status}}</td>
           <td> <a href="{{url('/admin/edit_barang',$user->id)}}"><button type="button" class="btn btn-primary">
+
              <span class="glyphicon glyphicon-cog" style="text-decoration-style: none" aria-hidden="true"></span></button> </a>
              <a href="{{url('/admin/delete_barang',$user->id)}}"> <button type="button" onclick="return confirm('Yakin ingin delete data?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a></td>
                  </tr>

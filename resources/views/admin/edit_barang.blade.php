@@ -1,9 +1,9 @@
 @extends('admin.admin_template')
-@section('title', 'Input Barang')
+@section('title', 'Edit Barang')
 @section('content')
 <div class="box box-primary">
     <div class="box-header with-border">
-      <h3 class="box-title">Form Input Barang </h3>
+      <h3 class="box-title">Form Edit Barang </h3>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
@@ -24,7 +24,13 @@
                 <label>Stok</label>
                 <input class="form-control" name="stok_barang" placeholder="Stok" value="{{$barang->stok}}" type="text">
               </div>
-        
+        <div class="form-group">
+          <label>Status</label>
+          <select name="status" class="form-control">
+            <option value="Titip" @if($barang->status === 'Titip') selected='selected' @endif>Titip </option>
+            <option value="Milik Sendiri" @if($barang->status === 'Milik Sendiri') selected='selected' @endif>Milik Sendiri </option>
+          </select>
+        </div>
         <div class="form-group">
         <input type="text" class="form-control" name="gambar" value="{{$barang->gambar}}" disabled="true" type="text">
           <label>Input Gambar</label>
@@ -41,8 +47,8 @@
       <!-- /.box-body -->
 
       <div class="box-footer" >
-          <button type="submit" class="btn btn-primary">Inputan</button>
-        <button type="submit" class="btn btn-primary">Input</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        <a href="{{url('/admin/list_barang')}}"<button type="button" class="btn btn-danger">Batal</button></a>
       </div>
     </form>
   </div>

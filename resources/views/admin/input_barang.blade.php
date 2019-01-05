@@ -19,6 +19,14 @@
           <input class="form-control" id="exampleInputPassword1" name="harga_barang" placeholder="Harga" type="text">
         </div>
         <div class="form-group">
+          <label>Status</label>
+          <select name="status" class="form-control">
+            <option value="Milik Sendiri" selected>Milik Sendiri</option>
+            <option value="Titip">Titip</option>
+            
+          </select>
+        </div>
+        <div class="form-group">
           <label for="exampleInputFile">Input Gambar</label>
           <input id="exampleInputFile" name="image" type="file">
 

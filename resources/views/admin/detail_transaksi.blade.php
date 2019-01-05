@@ -1,5 +1,5 @@
 @extends('admin.admin_template')
-
+@section('title','Detail Transaksi')
 @section('content')
 @if (session('alertsuccess'))
     <div class="alert alert-success">
@@ -13,7 +13,7 @@
 @endif
 <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Data Table With Full Features</h3>
+    <h3 class="box-title">Detail Transaksi {{$users[0]->id_transaksi}}</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -63,8 +63,8 @@
                  <tr role="row" class="odd">
           <td class="sorting_1">{{$user->id}}</td>
          <td>{{$user->id_transaksi}}</td> 
-         <td>{{$user->id_barang}}</td>
-          <td><a href="{{url('/admin/detailtransaksi',$user->id_transaksi)}}">{{$user->nama_barang}}</td>
+         <td><a href="{{url('/admin/detailtransaksi',$user->id_transaksi)}}">{{$user->id_barang}}</a></td>
+          <td>{{$user->nama_barang}}</td>
           <td>{{$user->jumlah_barang}}</td>
           <td>{{$user->deskripsi_barang}}</td> 
            <td>{{$user->harga_barang}}</td> 

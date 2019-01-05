@@ -2,6 +2,7 @@
 @section('title','Keranjang')
 
 @section('content')
+<h9 style="color:white">{{$total = 0}}</h9>
 	<div class="span9">
     <ul class="breadcrumb">
 		<li><a href="/">Home</a> <span class="divider">/</span></li>
@@ -11,7 +12,7 @@
 	<hr class="soft"/>
 	<form method="POST" action="/check_out">
 		{{ csrf_field() }}
-	<input type="text" name="namapelanggan" placeholder="Nama Pelanggan">
+	<input type="text" name="namapelanggan" placeholder="Nama Pelanggan" style="height:30px">
 	{{-- <table class="table table-bordered">
 		<tr><th> I AM ALREADY REGISTERED  </th></tr>
 		 <tr> 
@@ -66,7 +67,7 @@
                   <td>{{$item->name}}<br/>{{$item->options->warna}}</td>
 				  <td>
 					<div class="input-append">
-						<input disabled="disabled" class="span1" id="qty" style="max-width:34px; width:50px; height:20px" value="{{$item->qty}}" id="appendedInputButtons" size="16" type="text">
+						<input disabled="disabled" class="span1" id="qty" style="max-width:34px; width:50px; height:25px" value="{{$item->qty}}" id="appendedInputButtons" size="16" type="text">
 						<a href="{{url('product_summary/kurang',$item->rowId)}}"><button class="btn" type="button">
 							<i class="icon-minus"></i>
 						</button></a>
@@ -86,7 +87,7 @@
 								@endforeach
 				       <tr>
                   <td colspan="6" style="text-align:right">Total Price:	</td>
-                  <td>RP. {{Cart::total()}}</td>
+							 <td>RP. {{Cart::total()}} </td>
 								</tr>
 								
 				 <tr>
@@ -149,10 +150,14 @@
 				</form>				  
 			  </td>
 			  </tr>
-            </table>		 --}}
+						</table>		 --}}
+					<input type="hidden" name="total" value="{{$total}}">
 	<a href="/products" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
-
+	{{-- @if(isset($username)) --}}
 	<a href="/check_out" ><button type="submit" class="btn btn-large pull-right"> Next <i class="icon-arrow-right"></i></button></a>
+	{{-- @else
+	<a href="#login" data-toggle="modal" ><button type="button" class="btn btn-large pull-right"> Next <i class="icon-arrow-right"></i></button></a>
+	@endif --}}
 	</form>
 	
 </div>
@@ -160,3 +165,9 @@
 </div>
 <!-- MainBody End ============================= -->
 @endsection
+<script>
+	function(){
+		if(typeof $username == "undefined" || $username == null)
+		{{}}
+	}
+</script>

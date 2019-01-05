@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Userkasir;
+use Illuminate\Support\Facades\Redirect;
+
+
 
 class Page extends Controller
 {
@@ -30,4 +34,17 @@ class Page extends Controller
          return view('products',['users'=>$users,'judul'=>'Electronic Device']);
         // return $users;
     }
+    function login(Request $request){
+        $name = $request->username;
+        $pass = $request->password;
+        $namedb = Userkasir::select('username')->where('username',$name)->get();
+        $passdb = Userkasir::select('password')->where('password',$pass)->get();
+        $users=Product::paginate(9);
+        
+        if($name == $namedb[0]->username && $pass == $passdb[0]->password)
+        return view('index', ['username' => $name, 'users' => $users]);
+        else
+        return Redirect::action('Page@index')->with('alertfail','User atau password salah');
+    }
+    // 
 }

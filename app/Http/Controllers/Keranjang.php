@@ -12,6 +12,7 @@ use Carbon\Carbon;
 
 class Keranjang extends Controller
 {
+    private $username;
     function tambahkeranjang($product_id){
         $users = Product::find($product_id);
         // $st = $users->stok - 1;
@@ -35,6 +36,9 @@ class Keranjang extends Controller
     }
     function tampilkeranjang(){
         //return Cart::content();
+        // if($username){
+        //     return view('product_summary',['username'=>$username]);   
+        // }
          return view('product_summary');
     }
     function tambahqty($row){
@@ -62,11 +66,13 @@ class Keranjang extends Controller
         $data->id_transaksi = $nota;
       
         $data->name_pel = $request->namapelanggan;
+        $data->total_pembelian = Cart::total();
+        $data->created_at = Carbon::now();
         $c = 0;
         foreach (Cart::content() as $item):
             $ddata[$c] = new DetailTrans;
             $ddata[$c]->id_transaksi = $nota;
-            $ddata[$c]->id_barang = $item->rowId;
+            $ddata[$c]->id_barang = $item->id;
             $ddata[$c]->nama_pelanggan = $request->namapelanggan;
             $ddata[$c]->harga_barang = $item->price;
             $ddata[$c]->nama_barang = $item->name;
@@ -77,16 +83,20 @@ class Keranjang extends Controller
             }          
             $ddata[$c]->save();
             
-            $barang = Product::find($item->row) ; 
-            return $barang;  
-            // $stok = $barang->stok;
-            //     $barang->stok = $barang->stok - $item->qty;
-            //     $barang->save();
+            $barang = Product::find($item->id) ; 
+             
+            
+                $barang->stok = $barang->stok - $item->qty;
+                $barang->save();
             $c++;
+            
             
         endforeach;
         
         $data->save();
+        Cart::destroy();
+
+        return Redirect::to('/') ; 
         
        
 

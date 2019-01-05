@@ -12,17 +12,21 @@
 */
 
 //Route::resource('admin', 'Admin');
+Route::get('/returbarang', function(){
+    return view('retur_barang');
+});
+
 Route::get('/', 'Page@index');
 Route::get('/product_summary','Keranjang@tampilkeranjang');
+Route::get('/product_summary/{username}','Keranjang@tampilkeranjang');
 Route::get('/products','Page@products');
 Route::get('/register', function(){
     return view('register');
 });
 Route::get('/product_detail/{user_id}','Page@product_detail');
 Route::get('/tambahkeranjang/{user_id}','Keranjang@tambahkeranjang');
-Route::get('/login',function(){
-    return view('login');
-});
+Route::post('/login','Page@login');
+Route::get('/logout','Page@logout');
 Route::get('/forgetpass',function(){
     return view('forgetpass');
 });
@@ -59,3 +63,15 @@ Route::get('/simpanbarang', 'Admin@update_barang');
 Route::get('/admin/delete_barang/{id}','Admin@delete_barang');
 Route::get('/admin/list_nota','Admin@list_nota');
 Route::get('/admin/detailtransaksi/{id}','Admin@detail_transaksi');
+Route::post('/admin/returbarang','Admin@returbarang');
+Route::get('/admin/list_returbarang','Admin@list_returbarang');
+Route::get('/admin/konfrim_returbarang/{id}','Admin@konfirmasi_returbarang');
+Route::get('/admin/print_barang','Printe@barang');
+Route::get('/admin/print_transaksi','Printe@transaksi');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

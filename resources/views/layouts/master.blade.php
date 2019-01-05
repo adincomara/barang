@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-		
+
 <!-- Bootstrap style -->
     <link id="callCss" rel="stylesheet" href="{{asset('themes/bootshop/bootstrap.min.css')}}" media="screen"/>
     <link href="{{asset('themes/css/base.css')}}" rel="stylesheet" media="screen"/>
@@ -35,46 +35,57 @@
 	<span class="icon-bar"></span>
 </a>
   <div class="navbar-inner">
-    <a class="brand" href="/"><img src="{{asset('themes/images/logo.png')}}" alt="Bootsshop"/></a>
+    <a class="brand" href="/"><img src="{{asset('themes/images/logo.jpeg')}}" style="width:193px; height:47px" alt="Logo Perusahaan"/></a>
 		<form class="form-inline navbar-search" method="post" action="/products" >
 		<input id="srchFld" class="srchTxt" type="text" />
-		  <select class="srchTxt">
+		  {{-- <select class="srchTxt">
 			<option>All</option>
-			<option>CLOTHES </option>
+			<option></option>
 			<option>FOOD AND BEVERAGES </option>
 			<option>HEALTH & BEAUTY </option>
 			<option>SPORTS & LEISURE </option>
 			<option>BOOKS & ENTERTAINMENTS </option>
-		</select>
+		</select> --}}
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
     </form>
     <ul id="topMenu" class="nav pull-right">
-	 <li class=""><a href="special_offer.php">Specials Offer</a></li>
-	 <li class=""><a href="normal.php">Delivery</a></li>
-	 <li class=""><a href="contact.php">Contact</a></li>
+	 <li class=""><a href="returbarang">Retur Barang</a></li>
+	 {{-- <li class=""><a href="normal.php">Delivery</a></li> --}}
+{{-- 	 
+	 @if(isset($username))
+		<li class=""><a href="#">{{$username}}</a></li>
+	 
+	 @endif --}}
+	 
 	 <li class="">
+		 {{-- @if (isset($username))
+		 <a href="/logout" role="button"  style="padding-right:0"><span class="btn btn-large btn-danger">Logout</span></a>
+		 @else --}}
 	 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+		{{-- @endif --}}
 	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3>Login Block</h3>
+			<h3>Login Kasir</h3>
 		  </div>
 		  <div class="modal-body">
-			<form class="form-horizontal loginFrm">
+		  <form class="form-horizontal loginFrm" method="POST" action="/login">
+			{{csrf_field()}}
 			  <div class="control-group">
-				<input type="text" id="inputEmail" placeholder="Email">
+				<input type="text" name="username" placeholder="Username">
 			  </div>
 			  <div class="control-group">
-				<input type="password" id="inputPassword" placeholder="Password">
+				<input type="password" name="password" placeholder="Password">
 			  </div>
 			  <div class="control-group">
-				<label class="checkbox">
+				{{-- <label class="checkbox">
 				<input type="checkbox"> Remember me
-				</label>
+				</label> --}}
 			  </div>
-			</form>
+			
 			<button type="submit" class="btn btn-success">Sign in</button>
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		</form>
 		  </div>
 	</div>
 	</li>
@@ -91,17 +102,17 @@
 <!-- Sidebar ================================================== -->
 	<div id="sidebar" class="span3">
 		<div class="well well-small"><a id="myCart" href="{{url('/product_summary')}}"><img src="{{asset('themes/images/ico-cart.png')}}" alt="cart">{{Cart::content()->count()}} Produk  <span class="badge badge-warning pull-right">{{Cart::total()}}</span></a></div>
-		<ul id="sideManu" class="nav nav-tabs nav-stacked">
-			<li class="subMenu open"><a> ELECTRONICS DEVICE </a>
-				<ul>
+		{{-- <ul id="sideManu" class="nav nav-tabs nav-stacked">
+			<li class="subMenu open"><a> ELECTRONICS DEVICE </a> --}}
+				{{-- <ul>
 				<li><a href="/products/device"><i class="icon-chevron-right"></i>Device (100) </a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
-				</ul>
-			</li>
-			<li class="subMenu"><a> CLOTHES [840] </a>
-			<ul style="display:none">
+				</ul> --}}
+			{{-- </li>
+			<li class="subMenu"><a> CLOTHES [840] </a> --}}
+			{{-- <ul style="display:none">
 				<li><a href="/products"><i class="icon-chevron-right"></i>Women's Clothing (45)</a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>Women's Shoes (8)</a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>Women's Hand Bags (5)</a></li>
@@ -109,10 +120,10 @@
 				<li><a href="/products"><i class="icon-chevron-right"></i>Men's Shoes (6)</a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>Kids Clothing (5)</a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>Kids Shoes (3)</a></li>
-			</ul>
-			</li>
-			<li class="subMenu"><a>FOOD AND BEVERAGES [1000]</a>
-				<ul style="display:none">
+			</ul> --}}
+			{{-- </li>
+			<li class="subMenu"><a>FOOD AND BEVERAGES [1000]</a> --}}
+				{{-- <ul style="display:none">
 				<li><a href="/products"><i class="icon-chevron-right"></i>Angoves  (35)</a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>Bouchard Aine & Fils (8)</a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>French Rabbit (5)</a></li>
@@ -121,17 +132,20 @@
 				<li><a href="/products"><i class="icon-chevron-right"></i>Other Liquors & Wine (5)</a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>Garden (3)</a></li>
 				<li><a href="/products"><i class="icon-chevron-right"></i>Khao Shong (11)</a></li>
-			</ul>
+			</ul> --}}
 			</li>
-			<li><a href="/products">HEALTH & BEAUTY [18]</a></li>
+			{{-- <li><a href="/products">HEALTH & BEAUTY [18]</a></li>
 			<li><a href="/products">SPORTS & LEISURE [58]</a></li>
 			<li><a href="/products">BOOKS & ENTERTAINMENTS [14]</a></li>
-		</ul>
+		</ul> --}}
 
 	</div>
 <!-- Sidebar end=============================================== -->
 		<div class="span9">
-      @yield('content')
+			@yield('content')
+		</div>
+	</div>
+	</div>
 		</div>
 <!-- Footer ================================================================== -->
 	<div  id="footerSection">

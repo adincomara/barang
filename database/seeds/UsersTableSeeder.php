@@ -21,7 +21,8 @@ class UsersTableSeeder extends Seeder
                     'stok' => 100,
                     'gambar' => $faker->image('public/themes/images/products',160,160, null, false),
                     'harga' => 50000,
-                    'kategori'=> 'aksesoris'
+                    'kategori'=> 'aksesoris',
+                    'status' => 'Milik Sendiri'
                 ]);    
             }
             elseif($a>=5 AND $a<10){
@@ -30,7 +31,8 @@ class UsersTableSeeder extends Seeder
                     'stok' => 100,
                     'gambar' => $faker->image('public/themes/images/products',160,160, null, false),
                     'harga' => 50000,
-                    'kategori'=> 'device'
+                    'kategori'=> 'device',
+                    'status' => 'Titip'
                 ]);
             }
             else{
@@ -39,7 +41,8 @@ class UsersTableSeeder extends Seeder
                     'stok' => 100,
                     'gambar' => $faker->image('public/themes/images/products',160,160, null, false),
                     'harga' => 50000,
-                    'kategori'=> 'other'
+                    'kategori'=> 'other',
+                    'status' => 'Titip'
                 ]);
             }
             $a++;
