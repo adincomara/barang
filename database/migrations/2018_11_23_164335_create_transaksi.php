@@ -17,7 +17,7 @@ class CreateTransaksi extends Migration
             $table->increments('id')->autoIncrement();
             $table->string('id_transaksi');
             $table->string('name_pel');
-            $table->integer('total_pembelian');
+            $table->string('total_pembelian');
             $table->timestamps();
         });
        
